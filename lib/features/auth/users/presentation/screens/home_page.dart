@@ -105,29 +105,32 @@ class _HomePageState extends State<HomePage> {
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               const SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  _buildStatItem(
-                                    context,
-                                    Icons.book,
-                                    userController.user!.publicRepos.toString(),
-                                    'Repos',
-                                  ),
-                                  const SizedBox(width: 16),
-                                  _buildStatItem(
-                                    context,
-                                    Icons.people,
-                                    userController.user!.followers.toString(),
-                                    'Followers',
-                                  ),
-                                  const SizedBox(width: 16),
-                                  _buildStatItem(
-                                    context,
-                                    Icons.person_add,
-                                    userController.user!.following.toString(),
-                                    'Following',
-                                  ),
-                                ],
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    _buildStatItem(
+                                      context,
+                                      Icons.book,
+                                      userController.user!.publicRepos.toString(),
+                                      'Repos',
+                                    ),
+                                    const SizedBox(width: 16),
+                                    _buildStatItem(
+                                      context,
+                                      Icons.people,
+                                      userController.user!.followers.toString(),
+                                      'Followers',
+                                    ),
+                                    const SizedBox(width: 16),
+                                    _buildStatItem(
+                                      context,
+                                      Icons.person_add,
+                                      userController.user!.following.toString(),
+                                      'Following',
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -155,37 +158,39 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 16),
                     // Sort options
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Text(
                             'Sort by:',
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
-                        ),
-                        DropdownButton<SortOption>(
-                          value: repositoryController.sortOption,
-                          onChanged: (option) {
-                            if (option != null) {
-                              repositoryController.setSortOption(option);
-                            }
-                          },
-                          items: const [
-                            DropdownMenuItem(
-                              value: SortOption.name,
-                              child: Text('Name'),
-                            ),
-                            DropdownMenuItem(
-                              value: SortOption.date,
-                              child: Text('Date'),
-                            ),
-                            DropdownMenuItem(
-                              value: SortOption.stars,
-                              child: Text('Stars'),
-                            ),
-                          ],
-                        ),
-                      ],
+                          const SizedBox(width: 16),
+                          Obx(() => DropdownButton<SortOption>(
+                            value: repositoryController.sortOption,
+                            onChanged: (option) {
+                              if (option != null) {
+                                repositoryController.setSortOption(option);
+                              }
+                            },
+                            items: const [
+                              DropdownMenuItem(
+                                value: SortOption.name,
+                                child: Text('Name'),
+                              ),
+                              DropdownMenuItem(
+                                value: SortOption.date,
+                                child: Text('Date'),
+                              ),
+                              DropdownMenuItem(
+                                value: SortOption.stars,
+                                child: Text('Stars'),
+                              ),
+                            ],
+                          )),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -400,95 +405,101 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildRepositoryGridItem(BuildContext context, repo) {
-    return Card(
-      margin: const EdgeInsets.all(4),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  repo.private ? Icons.lock : Icons.folder,
-                  color: repo.private ? Colors.orange : Theme.of(context).primaryColor,
-                  size: 20,
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    repo.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            if (repo.description != null)
-              Expanded(
-                child: Text(
-                  repo.description!,
-                  style: Theme.of(context).textTheme.bodySmall,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            const Spacer(),
-            if (repo.language != null) ...[
+    return GestureDetector(
+      onTap: () {
+        // Navigate to repository details
+        Get.toNamed('/repository', arguments: repo);
+      },
+      child: Card(
+        margin: const EdgeInsets.all(4),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Row(
                 children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    decoration: BoxDecoration(
-                      color: _getLanguageColor(repo.language!),
-                      shape: BoxShape.circle,
-                    ),
+                  Icon(
+                    repo.private ? Icons.lock : Icons.folder,
+                    color: repo.private ? Colors.orange : Theme.of(context).primaryColor,
+                    size: 20,
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      repo.language!,
-                      style: Theme.of(context).textTheme.bodySmall,
+                      repo.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 4),
-            ],
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              const SizedBox(height: 8),
+              if (repo.description != null)
+                Text(
+                  repo.description!,
+                  style: Theme.of(context).textTheme.bodySmall,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              const Spacer(),
+              if (repo.language != null) ...[
                 Row(
                   children: [
-                    Icon(Icons.star, size: 12, color: Colors.amber),
-                    const SizedBox(width: 2),
-                    Text(
-                      repo.stargazersCount.toString(),
-                      style: Theme.of(context).textTheme.bodySmall,
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: _getLanguageColor(repo.language!),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        repo.language!,
+                        style: Theme.of(context).textTheme.bodySmall,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Icon(Icons.fork_right, size: 12, color: Colors.grey),
-                    const SizedBox(width: 2),
-                    Text(
-                      repo.forksCount.toString(),
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
+                const SizedBox(height: 4),
               ],
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.star, size: 12, color: Colors.amber),
+                      const SizedBox(width: 2),
+                      Text(
+                        repo.stargazersCount.toString(),
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.fork_right, size: 12, color: Colors.grey),
+                      const SizedBox(width: 2),
+                      Text(
+                        repo.forksCount.toString(),
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
