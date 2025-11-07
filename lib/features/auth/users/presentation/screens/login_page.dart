@@ -33,10 +33,17 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // App Logo/Icon
-            Icon(
-              Icons.code,
-              size: 80,
-              color: Theme.of(context).primaryColor,
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+              ),
+              child: Icon(
+                Icons.code,
+                size: 60,
+                color: Theme.of(context).primaryColor,
+              ),
             ),
             const SizedBox(height: 32),
             
@@ -51,12 +58,16 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 8),
             
             // Subtitle
-            Text(
-              'Explore GitHub repositories with ease',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Theme.of(context).textTheme.bodyMedium?.color,
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Text(
+                'Discover amazing repositories and explore the world of open source development',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
+                  height: 1.4,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 48),
             
