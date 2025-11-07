@@ -102,13 +102,17 @@ class GitHubRemoteDataSourceImpl implements GitHubRemoteDataSource {
   String _handleDioError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
+        return 'Connection timeout. Please check your internet connection.';
       case DioExceptionType.sendTimeout:
+        return 'Request timeout. Please try again.';
       case DioExceptionType.receiveTimeout:
-        return 'Connection timeout. Please try again.';
+        return 'Server response timeout. Please try again.';
       case DioExceptionType.connectionError:
         return AppStrings.networkError;
       case DioExceptionType.badResponse:
         return _getErrorMessage(error.response?.statusCode ?? 0);
+      case DioExceptionType.cancel:
+        return 'Request was cancelled.';
       default:
         return AppStrings.networkError;
     }
