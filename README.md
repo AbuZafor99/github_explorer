@@ -15,8 +15,8 @@ A beautiful Flutter application for exploring GitHub repositories with clean arc
 
 ## Screenshots
 
-|  |  |
-|:---:|:---:|
+|                                                                                   |                                                                                   |
+| :-------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: |
 | ![](https://drive.google.com/uc?export=view&id=14Gvxxox09__iqKPkaZisympnaW0zyIS-) | ![](https://drive.google.com/uc?export=view&id=1JXerOp0TEPagYVIU68sULCSH20iQzJTr) |
 
 ## Architecture
