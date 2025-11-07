@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../core/constants/app_constants.dart';
 import '../../../../../core/constants/app_strings.dart';
+import '../../../../../core/widgets/skeleton_loader.dart';
 import '../controller/repository_controller.dart';
 import '../controller/theme_controller.dart';
 import '../controller/user_controller.dart';
@@ -200,12 +201,12 @@ class _HomePageState extends State<HomePage> {
             // Repositories section
             Obx(() {
               if (repositoryController.isLoading) {
-                return const SliverToBoxAdapter(
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(32),
-                      child: CircularProgressIndicator(),
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => RepositoryItemSkeletonLoader(
+                      isGrid: repositoryController.viewMode == ViewMode.grid,
                     ),
+                    childCount: 8,
                   ),
                 );
               }
