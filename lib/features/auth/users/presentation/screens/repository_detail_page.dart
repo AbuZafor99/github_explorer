@@ -21,8 +21,7 @@ class RepositoryDetailPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.open_in_browser),
             onPressed: () {
-              // Open repository in browser
-              // You can use url_launcher package here
+              // TODO: Implement URL launcher to open repository in browser
             },
           ),
         ],

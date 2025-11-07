@@ -7,7 +7,6 @@ import '../../../../../core/constants/app_strings.dart';
 import '../../../../../core/utils/string_utils.dart';
 import '../../domain/get_user_usecase.dart';
 import '../../domain/github_user.dart';
-// import '../pages/home_page.dart';
 
 class UserController extends GetxController {
   final GetUserUseCase getUserUseCase;

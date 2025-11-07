@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../core/constants/app_constants.dart';
-// import '../widgets/user_info_card.dart';
-// import '../widgets/repository_list.dart';
-// import '../widgets/repository_grid.dart';
-// import '../widgets/search_bar.dart';
-// import '../widgets/sort_filter_bar.dart';
 import '../../../../../core/constants/app_strings.dart';
 import '../controller/repository_controller.dart';
 import '../controller/theme_controller.dart';
