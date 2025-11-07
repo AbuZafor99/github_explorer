@@ -4,29 +4,29 @@ A beautiful Flutter application for exploring GitHub repositories with clean arc
 
 ## Features
 
-- 🔍 Search GitHub users by username
-- 📱 Modern Material Design UI
-- 🌙 Dark/Light theme support
-- 📊 Repository statistics
-- 🔄 List/Grid view toggle
-- 📋 Detailed repository information
-- ⚡ Fast and responsive
-- 🎨 Beautiful animations
+-   🔍 Search GitHub users by username
+-   📱 Modern Material Design UI
+-   🌙 Dark/Light theme support
+-   📊 Repository statistics
+-   🔄 List/Grid view toggle
+-   📋 Detailed repository information
+-   ⚡ Fast and responsive
+-   🎨 Beautiful animations
 
 ## Architecture
 
 This project follows Clean Architecture principles:
 
-- **Presentation Layer**: UI components, controllers, and state management
-- **Domain Layer**: Business logic, entities, and use cases
-- **Data Layer**: API integration and data models
+-   **Presentation Layer**: UI components, controllers, and state management
+-   **Domain Layer**: Business logic, entities, and use cases
+-   **Data Layer**: API integration and data models
 
 ## Tech Stack
 
-- **Flutter**: UI framework
-- **GetX**: State management and navigation
-- **Dio**: HTTP client for API calls
-- **GitHub REST API**: Data source
+-   **Flutter**: UI framework
+-   **GetX**: State management and navigation
+-   **Dio**: HTTP client for API calls
+-   **GitHub REST API**: Data source
 
 ## Getting Started
 
@@ -45,8 +45,9 @@ This project follows Clean Architecture principles:
 ## API Reference
 
 This app uses the GitHub REST API:
-- User endpoint: `https://api.github.com/users/{userName}`
-- Repositories endpoint: `https://api.github.com/users/{userName}/repos`
+
+-   User endpoint: `https://api.github.com/users/{userName}`
+-   Repositories endpoint: `https://api.github.com/users/{userName}/repos`
 
 ## Contributing
 
