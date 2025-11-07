@@ -1,16 +1,57 @@
-# github_explorer
+# GitHub Explorer
 
-A new Flutter project.
+A beautiful Flutter application for exploring GitHub repositories with clean architecture.
+
+## Features
+
+- 🔍 Search GitHub users by username
+- 📱 Modern Material Design UI
+- 🌙 Dark/Light theme support
+- 📊 Repository statistics
+- 🔄 List/Grid view toggle
+- 📋 Detailed repository information
+- ⚡ Fast and responsive
+- 🎨 Beautiful animations
+
+## Architecture
+
+This project follows Clean Architecture principles:
+
+- **Presentation Layer**: UI components, controllers, and state management
+- **Domain Layer**: Business logic, entities, and use cases
+- **Data Layer**: API integration and data models
+
+## Tech Stack
+
+- **Flutter**: UI framework
+- **GetX**: State management and navigation
+- **Dio**: HTTP client for API calls
+- **GitHub REST API**: Data source
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Clone the repository
+2. Run `flutter pub get` to install dependencies
+3. Run `flutter run` to start the app
 
-A few resources to get you started if this is your first Flutter project:
+## Usage
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Enter a GitHub username on the login screen
+2. Explore the user's profile and repositories
+3. Tap on any repository to view detailed information
+4. Toggle between light and dark themes
+5. Switch between list and grid views
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## API Reference
+
+This app uses the GitHub REST API:
+- User endpoint: `https://api.github.com/users/{username}`
+- Repositories endpoint: `https://api.github.com/users/{username}/repos`
+
+## Contributing
+
+Feel free to contribute to this project by submitting issues or pull requests.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
