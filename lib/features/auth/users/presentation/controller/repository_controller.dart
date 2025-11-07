@@ -22,8 +22,8 @@ class RepositoryController extends GetxController {
   final _repositories = <Repository>[].obs;
   final _filteredRepositories = <Repository>[].obs;
   final _errorMessage = ''.obs;
-  final _sortOption = SortOption.name.obs;
-  final _sortOrder = SortOrder.ascending.obs;
+  final _sortOption = SortOption.date.obs; // Changed default to date
+  final _sortOrder = SortOrder.descending.obs; // Show newest first by default
   final _viewMode = ViewMode.list.obs;
   final _searchQuery = ''.obs;
 
@@ -106,8 +106,12 @@ class RepositoryController extends GetxController {
       return _sortOrder.value == SortOrder.ascending ? comparison : -comparison;
     });
     
+    // Update repositories and immediately refresh filtered repositories
     _repositories.assignAll(repos);
     _filterRepositories();
+    
+    // Force UI update by triggering a change to filteredRepositories
+    _filteredRepositories.refresh();
   }
 
   void _filterRepositories() {
