@@ -45,8 +45,8 @@ This project follows Clean Architecture principles:
 ## API Reference
 
 This app uses the GitHub REST API:
-- User endpoint: `https://api.github.com/users/{username}`
-- Repositories endpoint: `https://api.github.com/users/{username}/repos`
+- User endpoint: `https://api.github.com/users/{userName}`
+- Repositories endpoint: `https://api.github.com/users/{userName}/repos`
 
 ## Contributing
 
