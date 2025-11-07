@@ -196,6 +196,10 @@ class RepositoryDetailPage extends StatelessWidget {
                         CircleAvatar(
                           radius: 25,
                           backgroundImage: NetworkImage(repository.owner.avatarUrl),
+                          backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                          child: repository.owner.avatarUrl.isEmpty 
+                              ? Icon(Icons.person, size: 25, color: Theme.of(context).primaryColor)
+                              : null,
                         ),
                         const SizedBox(width: 16),
                         Expanded(

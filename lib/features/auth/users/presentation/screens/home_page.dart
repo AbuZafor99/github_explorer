@@ -90,6 +90,10 @@ class _HomePageState extends State<HomePage> {
                         CircleAvatar(
                           radius: 30,
                           backgroundImage: NetworkImage(userController.user!.avatarUrl),
+                          backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                          child: userController.user!.avatarUrl.isEmpty 
+                              ? Icon(Icons.person, size: 30, color: Theme.of(context).primaryColor)
+                              : null,
                         ),
                         const SizedBox(width: 16),
                         Expanded(
